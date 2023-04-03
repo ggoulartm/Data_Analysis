@@ -1,7 +1,5 @@
 #/bin/python3
 
-import matplotlib.pyplot as plt
-
 entrada = open("bacteria.fasta").read()
 saida = open("bacteria.html","w")
 
@@ -28,6 +26,7 @@ for result in cont:
 	if i%4==0:
 		saida.write("<div style='clear:both'></div>")
 	i+=1
+
 saida.close()
 
 entrada = open("human.fasta").read()
@@ -56,8 +55,14 @@ for result in cont:
 	if i%4==0:
 		saida.write("<div style='clear:both'></div>")
 	i+=1
+
 saida.close()
 
+from htmlwebshot import WebShot
 
+shot = WebShot()
+shot.quality = 100
 
+shot.create_pic(html="bacteria.html", output="bacteria.jpg")
+shot.create_pic(html="human.html", output="human.jpg")
 
